@@ -1,17 +1,9 @@
-class FilaPrioridade:
-    codigo: int = 0
-    fila = []
-    clientes_atendidos = []
-    senha_atual: str = ""
+from fila_base import FilaBase
 
+
+class FilaPrioridade(FilaBase):
     def gera_senha_atual(self) -> None:
         self.senha_atual = f'NM{self.codigo}'
-
-    def reseta_fila(self) -> None:
-        if self.codigo >= 100:
-            self.codigo = 0
-        else:
-            self.codigo += 1
 
     def atualiza_fila(self) -> None:
         self.reseta_fila()
@@ -31,5 +23,7 @@ class FilaPrioridade:
             estatistica['dia'] = dia
             estatistica['agencia'] = agencia
             estatistica['clientes_atendidos'] = self.clientes_atendidos
-            estatistica['quantidade_clientes_atendidos'] = len(self.clientes_atendidos)
+            estatistica['quantidade_clientes_atendidos'] = (
+                len(self.clientes_atendidos)
+            )
         return estatistica
